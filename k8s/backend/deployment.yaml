@@ -16,7 +16,8 @@ spec:
       containers:
         - name: backend
           image: my-backend-image:latest
-          imagePullPolicy: Never   
+          imagePullPolicy: Never
+          ports:
             - containerPort: 8080
           envFrom:
             - configMapRef:
