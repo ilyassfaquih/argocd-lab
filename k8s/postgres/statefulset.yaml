@@ -1,10 +1,11 @@
 apiVersion: apps/v1
-kind: StatefulSet          # StatefulSet et pas Deployment → identité stable + stockage persistant
-metadata:
+kind: StatefulSet         
   name: postgres
   namespace: spring-app
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
-  serviceName: postgres    # doit correspondre au nom du Service headless
+  serviceName: postgres 
   replicas: 1
   selector:
     matchLabels:
@@ -21,9 +22,9 @@ spec:
             - containerPort: 5432
           envFrom:
             - configMapRef:
-                name: postgres-config    # POSTGRES_DB
+                name: postgres-config
             - secretRef:
-                name: postgres-secret    # POSTGRES_USER + POSTGRES_PASSWORD
+                name: postgres-secret    
           volumeMounts:
             - name: postgres-data
               mountPath: /var/lib/postgresql/data

@@ -3,7 +3,9 @@ kind: ConfigMap
 metadata:
   name: backend-config
   namespace: spring-app
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 data:
-  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/testdb   # "postgres" = nom du Service ClusterIP
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/testdb
   SPRING_JPA_HIBERNATE_DDL_AUTO: update
   SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect

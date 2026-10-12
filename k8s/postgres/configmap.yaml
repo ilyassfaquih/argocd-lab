@@ -3,5 +3,7 @@ kind: ConfigMap
 metadata:
   name: postgres-config
   namespace: spring-app
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 data:
   POSTGRES_DB: testdb
