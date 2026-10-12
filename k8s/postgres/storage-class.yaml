@@ -1,0 +1,7 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-storage
+provisioner: kubernetes.io/no-provisioner  # pas de provisioning automatique
+volumeBindingMode: WaitForFirstConsumer    # attend qu'un pod demande le volume avant de le binder
+reclaimPolicy: Retain                      # garde les données même si le PVC est supprimé
